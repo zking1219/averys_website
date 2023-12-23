@@ -15,11 +15,16 @@ app.layout = html.Div([
 
 # Define the callback to update the output based on user input
 @app.callback(
-    dash.dependencies.Output('mad-libs-output', 'children'),
-    [dash.dependencies.Input('submit-button', 'n_clicks')],
-    [dash.dependencies.State('noun-input', 'value'),
-     dash.dependencies.State('verb-input', 'value'),
-     dash.dependencies.State('adjective-input', 'value')]
+    dash.dependencies.Output(component_id='mad-libs-output',
+                             component_property='children'),
+    dash.dependencies.Input(component_id='submit-button',
+                            component_property='n_clicks'),
+    dash.dependencies.State(component_id='noun-input',
+                            component_property='value'),
+    dash.dependencies.State(component_id='verb-input',
+                            component_property='value'),
+    dash.dependencies.State(component_id='adjective-input',
+                            component_property='value'),
 )
 def update_output(n_clicks, noun, verb, adjective):
     if n_clicks > 0:
